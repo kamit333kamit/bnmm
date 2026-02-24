@@ -2,17 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   :root {
-    --background: #0841ec;
-    --foreground: #000000;
-    --primary: #3b82f6;
+    --txt: #11181C;
+    --background: #fff;
+    --tint: #0a7ea4;
+    --icon: #687076;
+    --tabIconDefault: #687076;
+    --tabIconSelected: #0a7ea4;
   }
 
   .dark:root {
-    --background: #6ae41e;
-    --foreground: #d32c2c;
-    --primary: #60a5fa;
+    --txt: #ECEDEE;
+    --background: rgb(18, 18, 18);
+    --tint: #fff;
+    --icon: #9BA1A6;
+    --tabIconDefault: #9BA1A6;
+    --tabIconSelected: #fff;
   }
 }

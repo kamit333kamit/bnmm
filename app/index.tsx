@@ -6,8 +6,8 @@ export default function ShopIndex() {
   const router = useRouter();
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title} className="bg-background">Shop Home</Text>
+    <View style={styles.container} className="bg-background">
+      <Text style={styles.title} className="text-txt">Shop Home</Text>
 
       {/* Declarative in-app link (expo-router Link) */}
       <Link href="/(authenticated)/(apps)/shop/tabs/tab1/tab" style={styles.link}>

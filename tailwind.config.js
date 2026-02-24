@@ -6,9 +6,12 @@ darkMode: "class",
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-        primary: "var(--primary)",
+        txt: "var(--txt)", 
+        background:  "var(--background)", 
+        tint:  "var(--tint)", 
+        icon: "var(--icon)", 
+        tabIconDefault: "var(--tabIconDefault)", 
+        tabIconSelected: "var(--tabIconSelected)", 
       },
     },
   },
