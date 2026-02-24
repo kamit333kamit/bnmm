@@ -5,14 +5,14 @@
 
 @layer base {
   :root {
-    --background: #ffffff;
+    --backgroundl: #0841ec;
     --foreground: #000000;
     --primary: #3b82f6;
   }
 
-  .dark {
-    --background: #09090b;
-    --foreground: #ffffff;
+  .dark:root {
+    --backgroundl: #6ae41e;
+    --foreground: #d32c2c;
     --primary: #60a5fa;
   }
 }
