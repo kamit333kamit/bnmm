@@ -1,11 +1,17 @@
+import { increment } from '@/sm/counterSlice';
+import type { RootState } from '@/sm/store';
 import { Link, useRouter } from "expo-router";
 import React from "react";
 import { useTranslation } from 'react-i18next';
 import { Button, StyleSheet, Text, View } from "react-native";
+import { useDispatch, useSelector } from 'react-redux';
+
 
 export default function ShopIndex() {
   const router = useRouter();
     const { t, i18n } = useTranslation();
+    const dispatch = useDispatch();
+    const count = useSelector((state: RootState) => state.counter.value);
 
   return (
     <View style={styles.container} className="bg-background">
@@ -14,6 +20,11 @@ export default function ShopIndex() {
       <Text className="text-txt">{t('welcome')}</Text>
       <Button title="हिंदी" onPress={() => i18n.changeLanguage('hi')} />
       <Button title="English" onPress={() => i18n.changeLanguage('en')} />
+
+
+     {/* const dispatch = useDispatch(); */}
+     <Button title="Increment" onPress={() => dispatch(increment())} />
+     <Text>{count}</Text>
 
       {/* Declarative in-app link (expo-router Link) */}
       <Link href="/(authenticated)/(apps)/shop/tabs/tab1/tab" style={styles.link}>
