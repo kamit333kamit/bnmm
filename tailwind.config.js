@@ -6,7 +6,7 @@ darkMode: "class",
   theme: {
     extend: {
       colors: {
-        backgroundl: "var(--backgroundl)",
+        background: "var(--background)",
         foreground: "var(--foreground)",
         primary: "var(--primary)",
       },
