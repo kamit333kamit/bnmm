@@ -12,7 +12,7 @@ export default function ShopIndex() {
       <Text style={styles.title} className="text-txt">Shop Home</Text>
 
       <Text className="text-txt">{t('welcome')}</Text>
-      <Button title="Español" onPress={() => i18n.changeLanguage('es')} />
+      <Button title="हिंदी" onPress={() => i18n.changeLanguage('hi')} />
       <Button title="English" onPress={() => i18n.changeLanguage('en')} />
 
       {/* Declarative in-app link (expo-router Link) */}

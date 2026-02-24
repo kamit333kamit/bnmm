@@ -2,11 +2,15 @@ import * as Localization from 'expo-localization';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-// Define your translation resources
+
+// 1. Import your files
+import en from '@/lib/localization/languages/en.json';
+import hi from '@/lib/localization/languages/hi.json';
 const resources = {
-  en: { translation: { welcome: "Hello!" } },
-  es: { translation: { welcome: "¡Hola!" } },
+  en: { translation: en },
+  hi: { translation: hi },
 };
+
 
 i18n
   .use(initReactI18next)
