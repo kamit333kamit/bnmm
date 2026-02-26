@@ -5,6 +5,7 @@ import { useColorScheme } from '@/hooks/use-color-scheme';
 import '@/lib/localization/i18'; // Import the i18n configuration
 import { store } from '@/sm/store';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { PortalHost } from '@rn-primitives/portal';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
@@ -23,6 +24,7 @@ export default function RootLayout() {
       <Stack>
       </Stack>
       <StatusBar style="auto" />
+      <PortalHost />
       </Provider>
     </ThemeProvider>
   );
