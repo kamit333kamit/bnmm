@@ -34,8 +34,17 @@ export default function ShopIndex() {
 
       {/* Programmatic navigation */}
       <Button
-        title="Go to product 42 (router.push)"
+        title="Go (authenticated)/(apps)/shop/tabs/tab2/tab"
         onPress={() => router.push("/(authenticated)/(apps)/shop/tabs/tab2/tab")}
+      />
+
+            <Button
+        title="Go /"
+        onPress={() => router.push("/")}
+      />
+            <Button
+        title="Go login"
+        onPress={() => router.push("/login")}
       />
     </View>
   );
