@@ -7,9 +7,12 @@ import { Text } from '@react-navigation/elements';
 import { Image } from 'expo-image';
 import * as WebBrowser from "expo-web-browser";
 
+import { useAuthContext } from '@/hooks/use-auth-context';
+
 WebBrowser.maybeCompleteAuthSession();
 
 export default function GoogleSignInButton() {
+  const { setClaims, setIsLoggedIn } = useAuthContext();
 
   function extractParamsFromUrl(url: string) {
     const parsedUrl = new URL(url);
@@ -62,10 +65,25 @@ export default function GoogleSignInButton() {
 
       if (params.access_token && params.refresh_token) {
         console.debug('onSignInButtonPress - setSession');
+
+
+        console.log('onSignInButtonPress - setSession - params', { params });
         const { data, error } = await supabase.auth.setSession({
           access_token: params.access_token,
           refresh_token: params.refresh_token,
         });
+
+        supabase.auth.getClaims().then(({ data, error }) => {
+          if (error) {
+            console.error('onSignInButtonPress - getClaims - error', { error });
+          } else {
+            console.debug('onSignInButtonPress - getClaims - success', { data });
+            setClaims(data?.claims ?? null);
+            // setIsLoggedIn(true);
+          }
+        });
+
+        // setClaims();
         console.debug('onSignInButtonPress - setSession - success', { data, error });
         return;
       } else {

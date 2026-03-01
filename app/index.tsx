@@ -1,57 +1,39 @@
-import { Text as Rnu_Txt } from "@/components/ui/text";
-import { increment } from '@/sm/counterSlice';
-import type { RootState } from '@/sm/store';
-import { Link, useRouter } from "expo-router";
-import React from "react";
-import { useTranslation } from 'react-i18next';
-import { Button, StyleSheet, Text, View } from "react-native";
-import { useDispatch, useSelector } from 'react-redux';
+import GoogleSignInButton from '@/components/social-auth-buttons/google/google-sign-in-button';
+import { Link, Stack } from 'expo-router';
+import { StyleSheet } from 'react-native';
 
-export default function ShopIndex() {
-  const router = useRouter();
-    const { t, i18n } = useTranslation();
-    const dispatch = useDispatch();
-    const count = useSelector((state: RootState) => state.counter.value);
 
+import { ThemedText } from '@/components/themed-text';
+import { ThemedView } from '@/components/themed-view';
+
+export default function LoginScreen() {
   return (
-    <View style={styles.container} className="bg-background">
-      <Text style={styles.title} className="text-txt">Shop Home</Text>
+    <>
+      <Stack.Screen options={{ title: 'Login' }} />
+      <ThemedView style={styles.container}>
+        <ThemedText type="title">Login</ThemedText>
+        <Link href="/" style={styles.link}>
+                <GoogleSignInButton />
 
-      <Text className="text-foreground">{t('welcome')}</Text>
-      <Button title="हिंदी" onPress={() => i18n.changeLanguage('hi')} />
-      <Button title="English" onPress={() => i18n.changeLanguage('en')} />
-
-      <Rnu_Txt className="text-txt" variant={"blockquote"}>This is a custom text component.</Rnu_Txt>
-
-     {/* const dispatch = useDispatch(); */}
-     <Button title="Increment" onPress={() => dispatch(increment())} />
-     <Text>{count}</Text>
-
-      {/* Declarative in-app link (expo-router Link) */}
-      <Link href="/(authenticated)/(apps)/shop/tabs/tab1/tab" style={styles.link}>
-        Open product 42 (Link)
+          <ThemedText type="link">Try to navigate to home screen!</ThemedText>
+        </Link>
+      </ThemedView>
+      <Link href="/(tabss)" style={styles.link}>
+        <ThemedText type="link">Go to home screen</ThemedText>
       </Link>
-
-      {/* Programmatic navigation */}
-      <Button
-        title="Go (authenticated)/(apps)/shop/tabs/tab2/tab"
-        onPress={() => router.push("/(authenticated)/(apps)/shop/tabs/tab2/tab")}
-      />
-
-            <Button
-        title="Go /"
-        onPress={() => router.push("/")}
-      />
-            <Button
-        title="Go login"
-        onPress={() => router.push("/login")}
-      />
-    </View>
-  );
+    </>
+  )
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16 },
-  title: { fontSize: 20, marginBottom: 12 },
-  link: { color: "#007AFF", marginBottom: 12 },
-});
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+  },
+  link: {
+    marginTop: 15,
+    paddingVertical: 15,
+  },
+})

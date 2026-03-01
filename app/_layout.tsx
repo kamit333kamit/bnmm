@@ -12,24 +12,28 @@ import 'react-native-reanimated';
 import { Provider } from 'react-redux';
 
 import { useAuthContext } from '@/hooks/use-auth-context';
+import AuthProvider from "@/providers/auth-provider";
 
 export const unstable_settings = {
   anchor: '(tabs)',
 };
 
 function RootNavigator() {
-  const { isLoggedIn } = useAuthContext()
+  const { isLoggedIn, isLoading } = useAuthContext()
+  if (isLoading) {
+    // You can render a loading screen here if you want
+    return null
+  }
   return (
     <Stack>
+      {/* protected routes use guard component to check auth state */}
       <Stack.Protected guard={isLoggedIn}>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="(authenticated)" options={{ headerShown: false }} />
+        <Stack.Screen name="(tabss)" options={{ headerShown: false }} />
       </Stack.Protected>
-      <Stack.Protected guard={!isLoggedIn}>
-        <Stack.Screen name="login" options={{ headerShown: false }} />
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-      </Stack.Protected>
-      <Stack.Screen name="+not-found" />
+
+      {/* public routes */}
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+
     </Stack>
   )
 }
@@ -38,6 +42,7 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
 
   return (
+    <AuthProvider>
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Provider store={store}>
 
@@ -46,5 +51,6 @@ export default function RootLayout() {
       <PortalHost />
       </Provider>
     </ThemeProvider>
+    </AuthProvider>
   );
 }

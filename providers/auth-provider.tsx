@@ -6,6 +6,7 @@ export default function AuthProvider({ children }: PropsWithChildren) {
   const [claims, setClaims] = useState<Record<string, any> | undefined | null>()
   const [profile, setProfile] = useState<any>()
   const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
 
   // Fetch the claims once, and subscribe to auth state changes
   useEffect(() => {
@@ -20,22 +21,23 @@ export default function AuthProvider({ children }: PropsWithChildren) {
 
       setClaims(data?.claims ?? null)
       setIsLoading(false)
+      setIsLoggedIn(!!data?.claims)
     }
 
     fetchClaims()
 
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (_event, _session) => {
-      console.log('Auth state changed:', { event: _event })
-      const { data } = await supabase.auth.getClaims()
-      setClaims(data?.claims ?? null)
-    })
+    // const {
+    //   data: { subscription },
+    // } = supabase.auth.onAuthStateChange(async (_event, _session) => {
+    //   console.log('Auth state changed:', { event: _event })
+    //   const { data } = await supabase.auth.getClaims()
+    //   setClaims(data?.claims ?? null)
+    // })
 
-    // Cleanup subscription on unmount
-    return () => {
-      subscription.unsubscribe()
-    }
+    // // Cleanup subscription on unmount
+    // return () => {
+    //   subscription.unsubscribe()
+    // }
   }, [])
 
   // Fetch the profile when the claims change
@@ -51,8 +53,10 @@ export default function AuthProvider({ children }: PropsWithChildren) {
           .single()
 
         setProfile(data)
+        setIsLoggedIn(true)
       } else {
         setProfile(null)
+        setIsLoggedIn(false)
       }
 
       setIsLoading(false)
@@ -67,7 +71,11 @@ export default function AuthProvider({ children }: PropsWithChildren) {
         claims,
         isLoading,
         profile,
-        isLoggedIn: claims != undefined,
+        setProfile,
+        setClaims,
+        setIsLoading,
+        setIsLoggedIn,
+        isLoggedIn,
       }}
     >
       {children}
