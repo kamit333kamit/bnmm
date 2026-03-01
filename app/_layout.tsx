@@ -15,7 +15,7 @@ import { useAuthContext } from '@/hooks/use-auth-context';
 import AuthProvider from "@/providers/auth-provider";
 
 export const unstable_settings = {
-  anchor: '(tabs)',
+  anchor: '(tabss)',
 };
 
 function RootNavigator() {
