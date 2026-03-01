@@ -73,15 +73,15 @@ export default function GoogleSignInButton() {
           refresh_token: params.refresh_token,
         });
 
-        supabase.auth.getClaims().then(({ data, error }) => {
-          if (error) {
-            console.error('onSignInButtonPress - getClaims - error', { error });
-          } else {
-            console.debug('onSignInButtonPress - getClaims - success', { data });
-            setClaims(data?.claims ?? null);
-            // setIsLoggedIn(true);
-          }
-        });
+        // supabase.auth.getClaims().then(({ data, error }) => {
+        //   if (error) {
+        //     console.error('onSignInButtonPress - getClaims - error', { error });
+        //   } else {
+        //     console.debug('onSignInButtonPress - getClaims - success', { data });
+        //     setClaims(data?.claims ?? null);
+        //     // setIsLoggedIn(true);
+        //   }
+        // });
 
         // setClaims();
         console.debug('onSignInButtonPress - setSession - success', { data, error });

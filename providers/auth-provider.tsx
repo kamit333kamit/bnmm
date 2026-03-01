@@ -21,23 +21,23 @@ export default function AuthProvider({ children }: PropsWithChildren) {
 
       setClaims(data?.claims ?? null)
       setIsLoading(false)
-      setIsLoggedIn(!!data?.claims)
+      // setIsLoggedIn(!!data?.claims)
     }
 
     fetchClaims()
 
-    // const {
-    //   data: { subscription },
-    // } = supabase.auth.onAuthStateChange(async (_event, _session) => {
-    //   console.log('Auth state changed:', { event: _event })
-    //   const { data } = await supabase.auth.getClaims()
-    //   setClaims(data?.claims ?? null)
-    // })
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(async (_event, _session) => {
+      console.log('Auth state changed:', { event: _event })
+      const { data } = await supabase.auth.getClaims()
+      setClaims(data?.claims ?? null)
+    })
 
-    // // Cleanup subscription on unmount
-    // return () => {
-    //   subscription.unsubscribe()
-    // }
+    // Cleanup subscription on unmount
+    return () => {
+      subscription.unsubscribe()
+    }
   }, [])
 
   // Fetch the profile when the claims change
