@@ -22,17 +22,33 @@ function RootNavigator() {
   const { isLoggedIn, isLoading } = useAuthContext()
   if (isLoading) {
     // You can render a loading screen here if you want
+
+
     return null
+
+  //     return (
+  //   <Stack>
+  //     {/* protected routes use guard component to check auth state */}
+  //       <Stack.Screen name="(hhh)" options={{ headerShown: false }} />
+
+  //     {/* public routes */}
+
+  //   </Stack>
+  // )
   }
   return (
     <Stack>
       {/* protected routes use guard component to check auth state */}
       <Stack.Protected guard={isLoggedIn}>
         <Stack.Screen name="(tabss)" options={{ headerShown: false }} />
+      <Stack.Screen name="google-auth" options={{ headerShown: true }} />
+
       </Stack.Protected>
 
       {/* public routes */}
       <Stack.Screen name="index" options={{ headerShown: false }} />
+      {/* <Stack.Screen name="hhh" options={{ headerShown: false }} /> */}
+      {/* <Stack.Screen name="google-auth" options={{ headerShown: true }} /> */}
 
     </Stack>
   )
