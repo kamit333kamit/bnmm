@@ -29,6 +29,7 @@ function RootNavigator() {
       {/* protected routes use guard component to check auth state */}
       <Stack.Protected guard={isLoggedIn}>
         <Stack.Screen name="(tabss)" options={{ headerShown: false }} />
+        <Stack.Screen name="(authenticated)" options={{ headerShown: false }} />
       </Stack.Protected>
 
       {/* public routes */}

@@ -7,6 +7,8 @@ import SignOutButton from '@/components/social-auth-buttons/sign-out-button'
 import { ThemedText } from '@/components/themed-text'
 import { ThemedView } from '@/components/themed-view'
 import { useAuthContext } from '@/hooks/use-auth-context'
+import { router } from 'expo-router'
+import { Button } from 'react-native'
 
 export default function HomeScreen() {
   const { profile } = useAuthContext()
@@ -31,7 +33,9 @@ export default function HomeScreen() {
         <ThemedText type="subtitle">Full name</ThemedText>
         <ThemedText>{profile?.full_name}</ThemedText>
       </ThemedView>
+
       <SignOutButton />
+      <Button title="Go to details" onPress={() => router.push('/(authenticated)/(apps)/shop/tabs/tab1/tab')} />
     </ParallaxScrollView>
   )
 }
