@@ -7,11 +7,22 @@ import SignOutButton from '@/components/social-auth-buttons/sign-out-button'
 import { ThemedText } from '@/components/themed-text'
 import { ThemedView } from '@/components/themed-view'
 import { useAuthContext } from '@/hooks/use-auth-context'
+import { getShops } from '@/services/dataApi'
 import { router } from 'expo-router'
 import { Button } from 'react-native'
 
 export default function HomeScreen() {
   const { profile } = useAuthContext()
+
+  const handleClick = async () => {
+    const  t = await getShops()
+    // if (error) {
+    //   console.error('Error fetching shops:', error)
+    // } else {
+    //   console.log('Shops data:', data)
+    // }
+    console.log('Shops data:', t?.data)
+  }
 
   return (
     <ParallaxScrollView
@@ -36,6 +47,7 @@ export default function HomeScreen() {
 
       <SignOutButton />
       <Button title="Go to details" onPress={() => router.push('/(authenticated)/(apps)/shop/tabs/tab1/tab')} />
+      <Button title="Get Shops" onPress={handleClick} />
     </ParallaxScrollView>
   )
 }
