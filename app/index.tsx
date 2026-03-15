@@ -18,9 +18,7 @@ export default function LoginScreen() {
           <ThemedText type="link">Try to navigate to home screen!</ThemedText>
         </Link>
       </ThemedView>
-      <Link href="/(tabss)" style={styles.link}>
-        <ThemedText type="link">Go to home screen</ThemedText>
-      </Link>
+
     </>
   )
 }
