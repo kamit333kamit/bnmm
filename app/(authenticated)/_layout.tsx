@@ -8,7 +8,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     useEffect(() => {
         const loadSubscriptions = async () => {
             const { data: subscriptions } = await getSubscription()
-            setSubscriptionData(subscriptions)
+            if(subscriptions) {
+                setSubscriptionData(subscriptions[0])
+            }
         }
         loadSubscriptions()
     }
