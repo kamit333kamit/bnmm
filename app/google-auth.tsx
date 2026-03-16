@@ -11,5 +11,5 @@ export default function GoogleAuthCallback() {
   }, [])
 
   // Redirect back into the app (adjust target route as desired)
-  return <Redirect href="/(tabss)" />
+  return <Redirect href="/(authenticated)/(apps)/shop/tabs/tab1/tab" />
 }

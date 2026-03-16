@@ -3,7 +3,7 @@
 import "@/global.css";
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import '@/lib/localization/i18'; // Import the i18n configuration
-import { store } from '@/sm/store';
+import { store } from '@/sm/redux/store';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { PortalHost } from '@rn-primitives/portal';
 import { Stack } from 'expo-router';
@@ -15,7 +15,7 @@ import { useAuthContext } from '@/hooks/use-auth-context';
 import AuthProvider from "@/providers/auth-provider";
 
 export const unstable_settings = {
-  anchor: '(tabss)',
+  // anchor: '()',
 };
 
 function RootNavigator() {
